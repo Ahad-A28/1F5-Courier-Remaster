@@ -1,0 +1,32 @@
+Navbar{
+log
+Services
+about Us 
+Contact Us
+Our Partners
+Track Your Parcle
+login
+
+    
+}
+ Banner area{
+     Continer area{
+      h1 heading
+      subheading
+      call to action
+     }
+ }
+
+
+Footer{
+  Adress [ Find me on map]
+  home
+  about
+  Services
+  Privacy Policy
+  Conditions
+  Support 
+  Contact
+  Social media
+  Copyright © 2025 1F5 Courier | All rights reserved.
+}

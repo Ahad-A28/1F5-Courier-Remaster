@@ -1,0 +1,24 @@
+// vite.config.js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import compression from 'vite-plugin-compression';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    compression()
+  ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore']
+        }
+      }
+    },
+    minify: 'terser',
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 1000
+  }
+});
