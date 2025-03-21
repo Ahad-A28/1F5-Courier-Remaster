@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
+    "@lottiefiles/dotlottie-react": "^0.13.2",
     "@studio-freight/react-lenis": "^0.0.47",
     "firebase": "^11.1.0",
     "react": "^18.3.1",
@@ -21,7 +22,8 @@
     "react-scroll": "^1.9.0",
     "react-toastify": "^11.0.2",
     "terser": "^5.37.0",
-    "vite-plugin-compression": "^0.5.1"
+    "vite-plugin-compression": "^0.5.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

@@ -6,6 +6,7 @@ import Theme from "../Contexts/Theme";
 import TrackFooter from "./TrackFooter";
 import { db } from "../firebase/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 function Track() {
   const [isDarkMode, setIsDarkMode] = useContext(Theme);
@@ -21,8 +22,6 @@ function Track() {
       ease: "power2.inOut",
     });
   });
-
-  console.log(trackingData);
 
   useEffect(() => {
     onSnapshot(collection(db, "trackingData"), (snapshot) => {
@@ -84,7 +83,7 @@ function Track() {
               placeholder="Enter tracking number"
               value={trackingNumberInput}
               onChange={handleInputChange}
-              className={`flex-grow outline-none p-2 bg-transparent font-semibold text-sm md:text-base ${
+              className={`flex-grow outline-none p-2 bg-transparent font-semibold text-sm md:text-base uppercase ${
                 isDarkMode ? "text-gray-200" : "text-gray-900"
               }`}
             />
@@ -118,69 +117,88 @@ function Track() {
 
       {/* Result Card */}
       {selectedTracking ? (
-  <div className="result p-5 flex justify-center items-center mt-[-1rem]">
-    <div
-      className={`container flex flex-col max-w-[550px] w-full ${
-        isDarkMode ? "bg-gray-800 text-gray-200" : "text-gray-700 bg-white"
-      } p-5 rounded-lg shadow-lg`}
-    >
-      {/* Tracking Information */}
-      <div className="img flex justify-between items-center p-2 mb-4">
-        <h1 className="text-2xl font-bold uppercase ">
-          Tracking # {selectedTracking.trackingNumber}
-        </h1>
-        <div className="image flex flex-col items-center justify-center">
-          <img
-            src={
-              selectedTracking.status === "In Transit"
-                ? "\\Cardimages\\Transit.gif"
-                : selectedTracking.status === "Delivered"
-                ? "\\Cardimages\\Animation.gif"
-                : "\\Cardimages\\Failed.png"
+        <div className="result p-5 flex justify-center items-center mt-[-1rem]">
+          <div
+            className={`container flex flex-col max-w-[550px] w-full ${
+              isDarkMode
+                ? "bg-gray-800 text-gray-200"
+                : "text-gray-700 bg-white"
+            } p-5 rounded-lg shadow-lg`}
+          >
+            {/* Tracking Information */}
+            <div className="img flex justify-between items-center p-2 mb-4">
+              <h1 className="text-2xl font-bold uppercase ">
+                Tracking # {selectedTracking.trackingNumber}
+              </h1>
+              <div className="image flex flex-col items-center justify-center">
+                {selectedTracking.status === "Delivered" ? (
+                  <DotLottieReact
+                    src="https://lottie.host/381c9afa-2929-4f81-8841-c5d7a30f6618/0o1hIoJgHh.lottie"
+                    loop
+                    autoplay
+                  />
+                ) : selectedTracking.status === "Out Of Delivery" ? (
+                  <img className="h-[8rem]" src="Cardimages/Transit.gif" alt="Out Of Delivery" />
+                ) :""}
+        {selectedTracking.status === "Failed" ?  (
+                  <DotLottieReact
+                    src="https://lottie.host/68c4ed63-c61d-4740-a48a-6772742889e0/c2bhEYuuuA.lottie"
+                    loop
+                    autoplay
+                  />
+                ) : selectedTracking.status === "Slightly Delay" ?   <DotLottieReact
+                src="https://lottie.host/b9429a47-9da6-4fa8-92ed-1e3b5457133d/pGsZvOsKZi.lottie"
+                loop
+                autoplay
+              /> : selectedTracking.status === "On Hold"? (
+              <DotLottieReact
+      src="https://lottie.host/9ebd716d-2101-49c5-8875-b9927ce75e07/ravShcVGyC.lottie"
+      loop
+      autoplay
+    />):""
+            
             }
-            className="h-[8rem]"
-            alt="Delivery Animation"
-          />
-          <p className="mt-2 font-bold text-xl ">{selectedTracking.status}</p>
+                <p className="mt-2 font-bold text-xl ">
+                  {selectedTracking.status}
+                </p>
+              </div>
+            </div>
+
+            {/* Other Info */}
+            <div className="name flex gap-2 border-b-2 border-gray-300 p-2 justify-between">
+              <h2 className="text-lg font-semibold">Customer</h2>
+              <p className="">{selectedTracking.customerName}</p>
+            </div>
+            <div className="status flex justify-between border-b-2 border-gray-300 p-2">
+              <h2 className="text-lg font-semibold">Status</h2>
+              <p className="">{selectedTracking.status}</p>
+            </div>
+            <div className="CurrentLocation flex justify-between border-b-2 border-gray-300 p-2">
+              <h2 className="text-lg font-semibold">Current Location</h2>
+              <p className="">{selectedTracking.currentLocation}</p>
+            </div>
+            <div className="Destination flex justify-between border-b-2 border-gray-300 p-2">
+              <h2 className="text-lg font-semibold">Destination</h2>
+              <p className="">{selectedTracking.destination}</p>
+            </div>
+            <div className="EstimatedDeivery flex justify-between border-b-2 border-gray-300 p-2">
+              <h2 className="text-lg font-semibold">Estimated Delivery</h2>
+              <p className="">{selectedTracking.estimatedDelivery}</p>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* Other Info */}
-      <div className="name flex gap-2 border-b-2 border-gray-300 p-2 justify-between">
-        <h2 className="text-lg font-semibold">Customer</h2>
-        <p className="">{selectedTracking.customerName}</p>
-      </div>
-      <div className="status flex justify-between border-b-2 border-gray-300 p-2">
-        <h2 className="text-lg font-semibold">Status</h2>
-        <p className="">{selectedTracking.status}</p>
-      </div>
-      <div className="CurrentLocation flex justify-between border-b-2 border-gray-300 p-2">
-        <h2 className="text-lg font-semibold">Current Location</h2>
-        <p className="">{selectedTracking.currentLocation}</p>
-      </div>
-      <div className="Destination flex justify-between border-b-2 border-gray-300 p-2">
-        <h2 className="text-lg font-semibold">Destination</h2>
-        <p className="">{selectedTracking.destination}</p>
-      </div>
-      <div className="EstimatedDeivery flex justify-between border-b-2 border-gray-300 p-2">
-        <h2 className="text-lg font-semibold">Estimated Delivery</h2>
-        <p className="">{selectedTracking.estimatedDelivery}</p>
-      </div>
-    </div>
-  </div>
-) : (
-  <div className="result p-5 flex justify-center items-center mt-[-1rem]">
-    <div
-      className={`container flex flex-col max-w-[550px] w-full ${
-        isDarkMode ? "bg-gray-800 text-gray-200" : "text-gray-700 bg-white"
-      } p-5 rounded-lg shadow-lg text-center`}
-    >
-      <h1 className="text-xl font-bold">No Data Found</h1>
-      <p className="mt-2">Please check the tracking number and try again.</p>
-    </div>
-  </div>
-)}
-
+      ) : null
+      // <div className="result p-5 flex justify-center items-center mt-[-1rem]">
+      //   <div
+      //     className={`container flex flex-col max-w-[550px] w-full ${
+      //       isDarkMode ? "bg-gray-800 text-gray-200" : "text-gray-700 bg-white"
+      //     } p-5 rounded-lg shadow-lg text-center`}
+      //   >
+      //     <h1 className="text-xl font-bold">No Data Found</h1>
+      //     <p className="mt-2">Please check the tracking number and try again.</p>
+      //   </div>
+      // </div>
+      }
 
       {/* Footer */}
       <div className="mt-auto w-full">

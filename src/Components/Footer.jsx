@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link as RouterLink } from "react-router";
-import { Link as ScrollLink } from "react-scroll";
+ 
 import Theme from "../Contexts/Theme";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -30,6 +30,7 @@ const Footer = ( ) => {
            Hyderabad
           </p>
          
+         
         </div>
 
         {/* Navigation Section 1 */}
@@ -56,6 +57,11 @@ const Footer = ( ) => {
             <li>
               <RouterLink to="/contactus" className="text-sm hover:underline hover:text-blue-700 ">
                 Contact
+              </RouterLink>
+            </li>
+            <li>
+            <RouterLink to="/login" className="text-sm hover:underline hover:text-blue-700 ">
+              Login
               </RouterLink>
             </li>
           
