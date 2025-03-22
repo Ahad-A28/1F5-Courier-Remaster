@@ -4,7 +4,7 @@ import Banner from "./Components/Banner";
 import Services from "./Components/Services";
 import WhyChooseUs from "./Components/WhyChooseUs";
 import FAQ from "./Components/FAQ";
-import Footer from "./Components/footer";
+import Footer from "./Components/Footer";
 import Theme from "./Contexts/Theme";
 
 const App = () => {
