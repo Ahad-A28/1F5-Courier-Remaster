@@ -4,13 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "clean": "rimraf node_modules dist",
+    "preinstall": "npm cache clean --force",
     "dev": "vite",
-    "build": "CI=false && npm install --legacy-peer-deps && vite build",
+    "build": "set CI=false && npm ci --legacy-peer-deps && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "clean": "rm -rf node_modules && rm -rf dist",
-    "prebuild": "npm run clean && npm install --legacy-peer-deps",
-    "postinstall": "npm run build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
@@ -35,7 +34,8 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
-    "vite": "^5.1.6"
+    "vite": "^5.1.6",
+    "rimraf": "^5.0.1"
   },
   "engines": {
     "node": "16.20.0",
