@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "CI=false && npm install --legacy-peer-deps && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rm -rf node_modules && rm -rf dist",
+    "prebuild": "npm run clean && npm install --legacy-peer-deps",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
