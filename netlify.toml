@@ -3,7 +3,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "22.14.0 LTS"
   NPM_FLAGS = "--legacy-peer-deps"
 
 [[redirects]]
