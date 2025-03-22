@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Theme from "../Contexts/Theme";
 import Navbar2 from "./Navbar2";
-import Footer from "./footer";
+import Footer from "./Footer";
 import Tracking from "./Tracking";
 import { useAuth } from "../hooks/Auth";
 import { toast, ToastContainer } from "react-toastify";
