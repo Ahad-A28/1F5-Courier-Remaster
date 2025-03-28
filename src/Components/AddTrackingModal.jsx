@@ -121,7 +121,7 @@ const AddTrackingModal = ({ onClose }) => {
             placeholder="Tracking Number"
             className="border p-2 mb-4   uppercase"
             value={trackingNumber}
-            onChange={(e) => setTrackingNumber(e.target.value)}
+            onChange={(e) => setTrackingNumber(e.target.value.toUpperCase())}
           />
           <input
             type="text"

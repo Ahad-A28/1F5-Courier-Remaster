@@ -31,7 +31,7 @@ function Track() {
 
   // Function to handle the input change
   const handleInputChange = (e) => {
-    setTrackingNumberInput(e.target.value);
+    setTrackingNumberInput(e.target.value.toUpperCase());
   };
 
   // Function to handle the tracking number search
@@ -137,7 +137,7 @@ function Track() {
                     loop
                     autoplay
                   />
-                ) : selectedTracking.status === "Out Of Delivery" ? (
+                ) : selectedTracking.status === "Out Of Delivery" || selectedTracking.status === "In Transit" || selectedTracking.status === "Dispatch" ? (
                   <img className="h-[8rem]" src="Cardimages/Transit.gif" alt="Out Of Delivery" />
                 ) :""}
         {selectedTracking.status === "Failed" ?  (

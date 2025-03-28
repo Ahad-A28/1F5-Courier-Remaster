@@ -188,16 +188,16 @@ const Tracking = () => {
               ) : (
                 trackingData.map((tracking) => (
                   <tr key={tracking.id} className="border-b">
-                     <td className="py-4 px-2 border-r ">{tracking.ThirdPartyName}</td>
-                     <td className="py-4 px-2 border-r ">{tracking.ThirdPartyTr}</td>
-                    <td className="py-4 px-2 border-r ">{tracking.trackingNumber}</td>
+                     <td className="py-4 px-2 border-r uppercase ">{tracking.ThirdPartyName}</td>
+                     <td className="py-4 px-2 border-r uppercase">{tracking.ThirdPartyTr}</td>
+                    <td className="py-4 px-2 border-r uppercase">{tracking.trackingNumber}</td>
                     <td className="py-4 px-2 border-r ">{tracking.customerName}</td>
                     <td className="py-4 px-2 border-r ">{tracking.Items}</td>
                     <td
                       className={`py-4 px-2 border-r  ${
                         tracking.status === 'Delivered'
                           ? 'text-green-500'
-                          : tracking.status === 'Out Of Delivery'
+                          : tracking.status === 'Out Of Delivery' || tracking.status === 'In Transit' || tracking.status === 'Dispatch'
                           ? 'text-yellow-400'
                           : tracking.status === 'Slightly Delay'
                           ? 'text-yellow-600'
@@ -218,6 +218,8 @@ const Tracking = () => {
                       >
                         <option value="">Select Status</option>
                         <option value="Out Of Delivery">Out Of Delivery</option>
+                        <option value="In Transit">In Transit</option>
+                        <option value="Dispatch">Dispatch</option>
                         <option value="Delivered">Delivered</option>
                         <option value="Slightly Delay">Slightly Delay</option>
                         <option value="On Hold">On Hold</option>

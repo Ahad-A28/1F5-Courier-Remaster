@@ -8,6 +8,14 @@ export default defineConfig({
     react(),
     compression()
   ],
+  server: {
+    host: true,
+    allowedHosts: [
+      'localhost',
+      '127.0.0.1',
+      '.ngrok-free.app'  // Allow all ngrok-free.app subdomains
+    ]
+  },
   build: {
     rollupOptions: {
       output: {
